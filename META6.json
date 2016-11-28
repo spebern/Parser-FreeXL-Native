@@ -2,7 +2,9 @@
   "authors" : [
     "spebern"
   ],
-  "build-depends" : [ 'LibraryMake' ],
+  "build-depends" : [
+    "LibraryMake"
+  ],
   "depends" : [ ],
   "description" : "wrapper for freexl parsing .xls files",
   "name" : "Parser::FreeXL::Native",
