@@ -9,13 +9,16 @@ SYNOPSIS
     use Parser::FreeXL::Native;
 
     my Parser::FreeXL::Native $parser .= new;
-    $parser.open('file.xls');
+    $parser.open('file.xls');my Pointer[CArray[uint8]] $test .= new;
 
-    my $worksheet_count = $parser.get_worksheet_count;
+    my $sheet_count = $parser.sheet_count;
 
-    $parser.select_worksheet(1);
+    $parser.select_sheet(1);
+    $parser.select_sheet('sheet_1');
 
-    my ($max_row, $max_col) = $parser.worksheet_dimensions;
+    my @sheet_names = $parser.sheet_names;
+
+    my ($max_row, $max_col) = $parser.sheet_dimensions;
 
     for ^$max_row -> $row {
         for ^$max_col -> $col {
