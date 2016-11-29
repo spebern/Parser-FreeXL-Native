@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/spebern/Parser-FreeXL-Native.svg?branch=master)](https://travis-ci.org/spebern/Parser-FreeXL-Native)
+
 NAME
 ====
 

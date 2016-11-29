@@ -13,7 +13,7 @@
     "Parser::FreeXL::Native" : "lib/Parser/FreeXL/Native.pm6"
   },
   "resources" : [ ],
-  "source-url" : "",
+  "source-url" : "git://github.com/spebern/Parser-FreeXL-Native.git",
   "test-depends" : [ ],
   "version" : "*"
 }
