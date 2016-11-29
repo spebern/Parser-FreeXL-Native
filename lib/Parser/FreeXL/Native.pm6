@@ -192,7 +192,7 @@ Parser::FreeXL::Native - wrapper for freexl parsing .xls files
   use Parser::FreeXL::Native;
 
   my Parser::FreeXL::Native $parser .= new;
-  $parser.open('file.xls');my Pointer[CArray[uint8]] $test .= new;
+  $parser.open('file.xls');
 
   my $sheet_count = $parser.sheet_count;
 
