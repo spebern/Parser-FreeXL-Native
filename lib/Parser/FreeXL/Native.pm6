@@ -205,7 +205,7 @@ Parser::FreeXL::Native - wrapper for freexl parsing .xls files
 
   for ^$max_row -> $row {
       for ^$max_col -> $col {
-          my $cell  = $parser.get_cell($row, $col);
+          my $cell = $parser.get_cell($row, $col);
           # types: <int double text date datetime time>, Nil
           my $type  = $cell.type;
           my $value = $cell.value;
