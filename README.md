@@ -38,6 +38,8 @@ DESCRIPTION
 
 Parser::FreeXL::Native is a parser for xls using the freexl c library
 
+Windows support is planned. Currently the dll is missing.
+
 AUTHOR
 ======
 
