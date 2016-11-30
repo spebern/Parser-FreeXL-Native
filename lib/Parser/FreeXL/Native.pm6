@@ -2,7 +2,7 @@ use v6;
 use NativeCall;
 
 sub freexl_lib(--> Str) {
-    return IO::Path.new('./lib/libfreexl' ~ ($*DISTRO.is-win ?? '.dll' !! '.so')).Str;
+    return IO::Path.new('./lib/' ~ sprintf $*VM.config<dll>, 'freexl').Str;
 }
 
 class FileNotFound is Exception {
