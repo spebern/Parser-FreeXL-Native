@@ -2,9 +2,7 @@
   "authors" : [
     "spebern"
   ],
-  "build-depends" : [
-    "LibraryMake"
-  ],
+  "build-depends" : [ ],
   "depends" : [ ],
   "description" : "wrapper for freexl parsing .xls files",
   "license" : "Artistic-2.0",
