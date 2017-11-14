@@ -14,5 +14,5 @@
   "resources" : [ ],
   "source-url" : "git://github.com/spebern/Parser-FreeXL-Native.git",
   "test-depends" : [ ],
-  "version" : "*"
+  "version" : "0.0.2"
 }
