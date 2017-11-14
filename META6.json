@@ -7,6 +7,7 @@
   ],
   "depends" : [ ],
   "description" : "wrapper for freexl parsing .xls files",
+  "license" : "Artistic-2.0",
   "name" : "Parser::FreeXL::Native",
   "perl" : "6.c",
   "provides" : {
