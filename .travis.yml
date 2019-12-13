@@ -1,6 +1,9 @@
 os:
-  - linux
   - osx
+addons:
+  homebrew:
+    packages:
+    - freexl
 language: perl6
 perl6:
   - latest
@@ -8,5 +11,5 @@ install:
   - rakudobrew build-zef
   - zef --deps-only install .
 script:
-  - prove6 -v -Ilib t/
+  - PERL6LIB=lib prove --ext .t --ext .t6 -v -r --exec=perl6 t/
 sudo: false
