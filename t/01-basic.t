@@ -1,9 +1,7 @@
-use v6;
-
-use Test;
-plan 19;
-
 use Parser::FreeXL::Native;
+use Test;
+
+plan 19;
 
 my Parser::FreeXL::Native $parser .= new;
 
