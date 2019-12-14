@@ -1,9 +1,10 @@
-use v6;
-use NativeCall;
+use NativeCall :ALL;
 
 sub freexl_lib(--> Str) {
-    return IO::Path.new('./lib/' ~ sprintf $*VM.config<dll>, 'freexl').Str;
+	return %*ENV<LIBFREEXL> || guess_library_name("freexl");
 }
+
+constant LIB = freexl_lib();
 
 class FileNotFound is Exception {
     has Str $.path is required;
@@ -102,9 +103,9 @@ class Parser::FreeXL::Native is export {
         $.sheet_count = self!get_sheet_count;
 
         my int32 $result;
-        @.sheet_names = (0 ..^ $.sheet_count).map( -> Int $sheet_index {
-            p6_freexl_get_worksheet_name($!xls_handle, $sheet_index, $result)
-        });
+		@.sheet_names = (0 ..^ $.sheet_count).map( -> int32 $sheet_index {
+			p6_freexl_get_worksheet_name($!xls_handle, $sheet_index, $result)
+		});
     }
 
     method version { freexl_version };
@@ -159,26 +160,33 @@ class Parser::FreeXL::Native is export {
 
     # native functions
 
-    sub freexl_open(Str $path, Pointer $xls_handle is rw --> int32) is native(&freexl_lib) { * }
+    sub freexl_open(Str $path, Pointer $xls_handle is rw  --> int32) is native(LIB) { * }
 
-    sub freexl_close(Pointer $xls_handle is rw --> int32) is native(&freexl_lib) { * }
+    sub freexl_close(Pointer $xls_handle is rw --> int32) is native(LIB) { * }
 
-    sub freexl_version(--> Str) is native(&freexl_lib) { * }
+    sub freexl_version(--> Str) is native(LIB) { * }
 
     sub freexl_get_info(Pointer $xls_handle, uint16 $what, uint32 $info is rw --> int32)
-        is native(&freexl_lib) { * }
+        is native(LIB) { * }
 
-    sub p6_freexl_get_worksheet_name(Pointer $xls_handle, uint16 $sheet_index, int32 $result is rw
-                                --> Str) is native(&freexl_lib) { * }
+    sub freexl_get_worksheet_name(Pointer $xls_handle, uint16 $sheet_index, Pointer[Str] is rw
+                                --> int32) is native(LIB) { * }
 
     sub freexl_select_active_worksheet(Pointer $xls_handle, uint16 $sheet_index --> int32)
-        is native(&freexl_lib) { * }
+        is native(LIB) { * }
 
     sub freexl_worksheet_dimensions(Pointer $xls_handle, uint32 $rows is rw, uint16 $cols is rw
-                                --> int32) is native(&freexl_lib) { * }
+                                --> int32) is native(LIB) { * }
 
     sub freexl_get_cell_value(Pointer $xls_handle, uint32 $row, uint16 $col, Cell $cell is rw
-                              --> int32) is native(&freexl_lib) { * }
+                              --> int32) is native(LIB) { * }
+
+	sub p6_freexl_get_worksheet_name(Pointer $xls_handle, uint16 $sheet_index, int32 $result is rw --> Str) {
+		my Pointer[Str] $buf .= new;
+		$result = freexl_get_worksheet_name($xls_handle, $sheet_index, $buf);
+		my $sheet_name = $buf.deref;
+		return $sheet_name;
+	}
 }
 
 =begin pod

@@ -3,7 +3,7 @@
     "spebern"
   ],
   "build-depends" : [ ],
-  "depends" : [ ],
+  "depends" : [ "NativeCall" ],
   "description" : "wrapper for freexl parsing .xls files",
   "license" : "Artistic-2.0",
   "name" : "Parser::FreeXL::Native",
@@ -11,8 +11,12 @@
   "provides" : {
     "Parser::FreeXL::Native" : "lib/Parser/FreeXL/Native.pm6"
   },
+  "test-depends": [ "Test" ],
   "resources" : [ ],
+  "repo-type" : "git",
   "source-url" : "git://github.com/spebern/Parser-FreeXL-Native.git",
-  "test-depends" : [ ],
-  "version" : "0.0.2"
+  "version" : "0.0.3",
+  "tags" : [
+    "libfreexl"
+  ]
 }

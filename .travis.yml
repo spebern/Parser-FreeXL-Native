@@ -1,13 +1,15 @@
 os:
-  - linux
   - osx
+addons:
+  homebrew:
+    packages:
+    - freexl
 language: perl6
 perl6:
   - latest
 install:
-  - rakudobrew build-panda
-  - panda --notests installdeps .
+  - rakudobrew build-zef
+  - zef --deps-only install .
 script:
-  - perl6 -MPanda::Builder -e 'Panda::Builder.build(~$*CWD)'
-  - PERL6LIB=$PWD/lib prove -e perl6 -vr t/
+  - PERL6LIB=lib prove --ext .t --ext .t6 -v -r --exec=perl6 t/
 sudo: false
