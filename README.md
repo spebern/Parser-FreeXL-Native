@@ -40,6 +40,15 @@ Parser::FreeXL::Native is a parser for xls using the freexl c library
 
 Windows support is planned. Currently the dll is missing.
 
+INSTALL
+=======
+
+The libfreexl library needs to be installed separarely, and previously. Use for instance
+
+    sudo apt install libfreexl-dev
+	
+in Ubuntu.
+
 AUTHOR
 ======
 
